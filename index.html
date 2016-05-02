@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <!-- css for the calendar -->
+  <link data-require="bootstrap-css@3.0.2" data-semver="3.0.2" rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" />
+  <link data-require="fullcalendar@2.3.2" data-semver="2.3.2" rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.2/fullcalendar.min.css" />
+
+  <!-- jquery & angular frameworks (must come in this order!) -->
+  <script data-require="jquery@*" data-semver="2.0.3" src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+  <script data-require="angular.js@1.2.2" data-semver="1.2.2" src="http://code.angularjs.org/1.2.2/angular.js"></script>
+  
+  <!-- moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment-with-locales.js"></script>
+
+  <!-- fullCalendar plus the anguluar adapter -->
+  <!--<script data-require="fullcalendar@2.3.2" data-semver="2.3.2" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.3.2/fullcalendar.min.js"></script>-->
+
+  <script src="fullcalendar.js"></script>
+  <script src="angular-ui-calendar.js"></script>
+
+  <!-- Google API client library and helper -->
+  <script src="https://apis.google.com/js/client.js"></script>
+  <script src="gapi-helper.js"></script>
+
+</head>
+
+<body ng-app="CalendarApp">
+  <div ng-controller="CalendarController">
+
+    <!--Add a button for the user to click to initiate auth sequence -->
+    <button id="authorize-button" ng-show="authNeeded" ng-click="requestAuth()">Authorize</button>
+    <button id="logout-button" ng-hide="authNeeded" onclick="window.open('https://accounts.google.com/logout')">Sign Out</button>
+    <div class="calendar" ng-model="eventSources" calendar="calendar" config="uiConfig.calendar" ui-calendar="uiConfig.calendar"></div>
+  
+  </div>
+
+  <!-- the app -->
+  <script src="app.js"></script>
+  <script src="factories.js"></script>
+  <script src="controller.js"></script>
+
+</body>
+
+</html>
