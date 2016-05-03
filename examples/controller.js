@@ -5,11 +5,24 @@ app.controller("CalendarController", function($scope, $location, EventSourceFact
   // load calendars from google and pass them as event sources to fullcalendar
   $scope.loadSources = function() {
     EventSourceFactory.getEventSources().then(function(result) {
-      $scope.$log.debug("event sources %O", result);
+
+      console.log('--- event sources controller---');
+      console.log(result);
+    //  $scope.$log.debug("event sources %O", result);
       $scope.eventSources = result;
-      angular.forEach(result, function(source) {
+  
+  console.log('--- result ---');
+  console.log(result);
+
+      $scope.calendar.fullCalendar('addEventSource', result);
+
+/*      angular.forEach(result, function(source) {
         $scope.calendar.fullCalendar('addEventSource', source);
-      });
+        
+        console.log('--- source ---');
+        console.log(source);
+      });*/
+
     });
   };
 
