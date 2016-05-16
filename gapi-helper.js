@@ -50,20 +50,27 @@ gapi_helper.checkAuth = function() {
 gapi_helper.handleAuthResult = function(authResult) {
   console.log("gapi_helper.handleAuthResult %s", gapi_helper.time());
   if (authResult && !authResult.error) {
-    gapi_helper.fireEvent('authorized');
+    //gapi_helper.fireEvent('authorized');
+
+    console.log('--- authResult ---');
+    console.log(authResult);
     gapi_helper.loadServices();
   } else {
-    gapi_helper.fireEvent('authFailed');
+
+    console.log('--- else ---');
+    console.log(authResult);
+    //gapi_helper.fireEvent('authFailed');
+    gapi_helper.requestAuth();
   }
 };
-  
+
 gapi_helper.requestAuth = function(event) {
   console.log("gapi_helper.requestAuth %s", gapi_helper.time());
   gapi.auth.authorize({
     client_id: gapi_helper.config.clientId, 
     scope: gapi_helper.config.scopes, 
-    immediate: false,
-    cookie_policy: "single_host_origin"
+    immediate: false
+
   }, gapi_helper.handleAuthResult);
   return false; // so you can use this as an onclick handler
 };
@@ -88,6 +95,13 @@ gapi_helper.loadServices = function() {
 // TODO add gapi_helper.logout
 
 gapi_helper.when = function(eventName, callback) {
+  
+
+  console.log(eventName);
+  console.log('--- eventName ---');
+
+  console.log(callback);
+  console.log('--- callback ---');
   // if event has already happened, trigger the callback immediately
   if (gapi_helper.status[eventName]) callback();
   // in any case, add the callback to the listeners array

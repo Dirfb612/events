@@ -200,7 +200,7 @@ app.factory("EventSourceFactory", function ($q, $log, GCalFactory) {
       end = moment(end).format();
       
       return GCalFactory.getEvents(calendarId, start, end).then(function (result) {
-         
+
          console.log('--- result getEvents GCalFactory ---');
          console.log('--- result ****---');
          console.log(result);
