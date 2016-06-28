@@ -150,7 +150,11 @@ app.factory("EventSourceFactory", function ($q, $log, GCalFactory) {
       };
       
       function events(start, end, timezone, callback) {
-         
+         console.log('events ------------ EventSourceFactory');
+         console.log('--- start ---');
+         console.log(start);
+         console.log('--- end ---');
+         console.log(end);
          getEvents(google.id, start, end, timezone, callback);
          
       }
@@ -195,11 +199,18 @@ app.factory("EventSourceFactory", function ($q, $log, GCalFactory) {
    
    // fetches events from Google
    function fetchEvents(calendarId, start, end, timezone) {
+   console.log('eventSourceFactory');
+      console.log('--- start ---');
+      console.log(start);
+      console.log('--- end ---');
+      console.log(end);
       
       start = moment(start).format();
       end = moment(end).format();
       
       return GCalFactory.getEvents(calendarId, start, end).then(function (result) {
+
+
 
          console.log('--- result getEvents GCalFactory ---');
          console.log('--- result ****---');
@@ -212,6 +223,11 @@ app.factory("EventSourceFactory", function ($q, $log, GCalFactory) {
    
    // gets events, possibly from the cache if it's not stale
    function getEvents(calendarId, start, end, timezone, callback) {
+   console.log('funciont get events');
+      console.log('--- start ---');
+      console.log(start);
+      console.log('--- end ---');
+      console.log(end);
       
       var key = calendarId + '|' + start + '|' + end;
       var cached = eventCache[key];

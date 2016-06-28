@@ -79,7 +79,7 @@ app.factory('GCalFactory', function ($q, $log) {
    };
    
    // fetches the calendar list from Google
-   function getCalendars() {
+   function getCalendars() {  
       
       var calendarId = {calendarId: 'm8lu1jllnie840ei5lhlihr1tc@group.calendar.google.com'};
       //var request = gapi.client.calendar.calendarList.list();
@@ -107,6 +107,11 @@ app.factory('GCalFactory', function ($q, $log) {
    // start and end dates (optional) must be RFC 3339 format
    
    function getEvents(calendarId, start, end) {
+      console.log('GcalFactory');
+      console.log('--- start ---');
+      console.log(start);
+      console.log('--- end ---');
+      console.log(end);
       
       console.log('--- calendarId ---');
       console.log(calendarId);
